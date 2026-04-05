@@ -1,0 +1,26 @@
+services:
+  - type: web
+    runtime: docker
+    name: durian-bank
+    plan: starter
+    region: singapore
+    healthCheckPath: /health
+    envVars:
+      - key: PORT
+        value: "10000"
+      - key: DURIAN_BANK_DATA_DIR
+        value: /var/data/durian-bank
+      - key: DURIAN_BANK_FORCE_SECURE_COOKIES
+        value: "true"
+      - key: DURIAN_BANK_OWNER_USERNAME
+        sync: false
+      - key: DURIAN_BANK_OWNER_PASSWORD
+        sync: false
+      - key: DURIAN_BANK_OWNER_NAME
+        value: "เจ้าของระบบ"
+      - key: DURIAN_BANK_OWNER_NICKNAME
+        value: "Owner"
+    disk:
+      name: durian-bank-data
+      mountPath: /var/data/durian-bank
+      sizeGB: 10
